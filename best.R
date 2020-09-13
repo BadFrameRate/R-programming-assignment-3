@@ -17,12 +17,16 @@ best<-function(state,outcome){
     rows_to_use<-table19[which(table19$State==state),]
   
     #subsetting according to outcome
-    if(outcome==possible_outcomes[1]) rates_data<-rows_to_use[,c(2,11)]
-    if(outcome==possible_outcomes[2]) rates_data<-rows_to_use[,c(2,17)]
-    if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,c(2,23)]
+    if(outcome==possible_outcomes[1]) raw_data<-rows_to_use[,c(2,11)]
+    if(outcome==possible_outcomes[2]) raw_data<-rows_to_use[,c(2,17)]
+    if(outcome==possible_outcomes[3]) raw_data<-rows_to_use[,c(2,23)]
+  
+  #removing NAs
+  rates_data<-raw_data[!is.na(raw_data[,2]),]
   
   #sorting rates in ascending order, using hospital names to break ties
   sorted_rates<-rates_data[order(as.numeric(rates_data[,2]),rates_data[,1]),]
+
   
   #returns hospital name
   sorted_rates[1,1]
