@@ -5,13 +5,11 @@ best<-function(state,outcome){
   
   #check outcome validity
   possible_outcomes=c("heart attack","heart failure","pneumonia")
-  for(i in seq_along(possible_outcomes))
-    if(!(any(outcome==possible_outcomes)==T)) stop("invalid outcome")
+  if(!(any(outcome==possible_outcomes)==T)) stop("invalid outcome")
   
   #check state code validity
   possible_state_codes=table19[,7]
-  for(i in seq_along(possible_state_codes))
-    if(!(any(state==possible_state_codes)==T)) stop("invalid state")
+  if(!(any(state==possible_state_codes)==T)) stop("invalid state")
   
   #extracting column of death rates for the given outcome in the given state
   
@@ -24,7 +22,7 @@ best<-function(state,outcome){
     if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,c(2,23)]
   
   #sorting rates in ascending order, using hospital names to break ties
-  sorted_rates<-order(rates_data[,2],rates_data[,1],dec=F,na.last=NA)
+  sorted_rates<-rates_data[order(rates_data[,2],rates_data[,1],na.last=NA),]
   
   #returns hospital name
   sorted_rates[[1,1]]
