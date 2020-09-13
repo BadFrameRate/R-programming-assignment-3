@@ -11,5 +11,10 @@ rankall<-function(state,outcome,num="best"){
   possible_state_codes=unique(table19[,7])
   if(!(any(state==possible_state_codes)==T)) stop("invalid state")
   
+  #subsetting according to outcome
+  if(outcome=possible_outcomes[1]) all_rates<-table19[,c(2,11)]
+  if(outcome=possible_outcomes[2]) all_rates<-table19[,c(2,17)]
+  if(outcome=possible_outcomes[3]) all_rates<-table19[,c(2,23)]
+  
   
 }
