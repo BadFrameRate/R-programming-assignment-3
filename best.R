@@ -13,15 +13,20 @@ best<-function(state,outcome){
   for(i in seq_along(possible_state_codes))
     if(!(any(state==possible_state_codes)==T)) stop("invalid state")
   
-  #accessing columns of death rates for the given outcome in the given state
+  #extracting column of death rates for the given outcome in the given state
   
-  #subsetting according to state code
-  rows_to_use<-table19[which(table19$State==state),]
+    #subsetting according to state code
+    rows_to_use<-table19[which(table19$State==state),]
   
-  #subsetting according to outcome
-  if(outcome==possible_outcomes[1]) rates_data<-rows_to_use[,11]
-  if(outcome==possible_outcomes[2]) rates_data<-rows_to_use[,17]
-  if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,23]
+    #subsetting according to outcome
+    if(outcome==possible_outcomes[1]) rates_data<-rows_to_use[,c(2,11)]
+    if(outcome==possible_outcomes[2]) rates_data<-rows_to_use[,c(2,17)]
+    if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,c(2,23)]
   
+  #sorting rates in ascending order, using hospital names to break ties
+  sorted_rates<-order(rates_data[,2],rates_data[,1],dec=F,na.last=NA)
+  
+  #returns hospital name
+  sorted_rates[[1,1]]
   
 }
