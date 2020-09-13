@@ -18,4 +18,12 @@ rankall<-function(state,outcome,num="best"){
   
   #explicit NA removal
   na_free_rates<-all_rates[!is.na(as.numeric(all_rates[,3])),]
+  
+  #splitting the data according to states
+  split_data<-split(na_free_rates[,c(1,3)],na_free_rates[,2])
+  
+  #order data in every state using anonymous function
+  ordered_state_data<-lapply(split_data,function(df) df<-df[order(df[,2],df[,1]),])
+  
+  
 }
