@@ -22,7 +22,7 @@ rankall<-function(outcome,num="best"){
   split_data<-split(na_free_rates[,c(1,3)],na_free_rates[,2])
   
   #order data in every state using anonymous function
-  ordered_state_data<-lapply(split_data,function(df) df<-df[order(df[,2],df[,1]),])
+  ordered_state_data<-lapply(split_data,function(df) df<-df[order(as.numeric(df[,2]),df[,1]),])
   
   #indexing "best" and numeric values for 'num' argument
   if(num=="best") i<-1
