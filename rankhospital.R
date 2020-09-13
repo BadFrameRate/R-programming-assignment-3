@@ -21,7 +21,9 @@ rankhospital<-function(state,outcome,num="best"){
     if(outcome==possible_outcomes[2]) rates_data<-rows_to_use[,c(2,17)]
     if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,c(2,23)]
   
+  #removing NAs explicitly
+  na_free_rates<-rates_data[!is.na(as.numeric(rates_data[,2])),]
+    
   #sorting rates in ascending order, using hospital names to break ties
-  sorted_rates<-rates_data[order(as.numeric(rates_data[,2]),rates_data[,1]),]
-  
+  sorted_rates<-na_free_rates[order(as.numeric(na_free_rates[,2]),na_free_rates[,1]),]
 }
