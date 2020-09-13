@@ -21,8 +21,6 @@ best<-function(state,outcome){
     if(outcome==possible_outcomes[2]) rates_data<-rows_to_use[,c(2,17)]
     if(outcome==possible_outcomes[3]) rates_data<-rows_to_use[,c(2,23)]
   
-  
-  
   #sorting rates in ascending order, using hospital names to break ties
   sorted_rates<-rates_data[order(as.numeric(rates_data[,2]),rates_data[,1]),]
   
