@@ -8,7 +8,7 @@ best<-function(state,outcome){
   if(!(any(outcome==possible_outcomes)==T)) stop("invalid outcome")
   
   #check state code validity
-  possible_state_codes=table19[,7]
+  possible_state_codes=unique(table19[,7])
   if(!(any(state==possible_state_codes)==T)) stop("invalid state")
   
   #extracting column of death rates for the given outcome in the given state
