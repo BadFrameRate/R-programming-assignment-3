@@ -26,4 +26,12 @@ rankhospital<-function(state,outcome,num="best"){
     
   #sorting rates in ascending order, using hospital names to break ties
   sorted_rates<-na_free_rates[order(as.numeric(na_free_rates[,2]),na_free_rates[,1]),]
+  
+  #indexing required rank
+  if(num=="best") i<-1
+  if(num=="worst") i<-length(sorted_rates[,2])
+  if(!is.na(as.numeric(num))) i<-as.numeric(num)
+  
+  #return hospital name
+  sorted_rates[i,1]
 }
