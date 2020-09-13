@@ -10,4 +10,6 @@ rankall<-function(state,outcome,num="best"){
   #check state code validity
   possible_state_codes=table19[,7]
   if(!(any(state==possible_state_codes)==T)) stop("invalid state")
+  
+  
 }
